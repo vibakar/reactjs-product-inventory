@@ -12,6 +12,43 @@ code {
     monospace;
 }
 
+.mt-56 {
+	margin-top: 56px;
+}
+
+.c-wh, .dropdown-toggle{
+  color: white !important;
+}
+
+.c-wh:hover {
+  color: white;
+  text-decoration: none;
+}
+
 .footerText {
 	color: white;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.carousel-img-h {
+  height: 375px;
+}
+
+.product-cards {
+  margin: 10px 0px 50px -10px;
+}
+
+.customize {
+  margin: 0px 0px 0px -15px;
+}
+
+.customize-field {
+  height: 40px;
+}
+
+.customize-field .card-body {
+  padding: 0.25rem;
 }
