@@ -1,19 +1,15 @@
 import React from 'react';
+import { Form, Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Banner from './banner';
 import AllProducts from './allProducts';
-import { Form, Row, Col, Card, Button } from 'react-bootstrap';
-import productsList from '../db';
+import * as actions from '../actions/productActions';
 
 class Home extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			productsList: []
-		};
-	}
 
 	componentDidMount() {
-		this.setState({productsList: productsList.products});
+		this.props.getAllProducts();
 	}
 
 	render() {
@@ -21,40 +17,36 @@ class Home extends React.Component {
 			<div>
 				<Banner></Banner>
 				<div style={{marginTop: '20px', marginLeft: '5px'}}>
-					<Form>
-						<Row className="customize">
-							<Col>
-							    <Form.Control className="search-field" type="text" placeholder="Search Product" />
-							    <Button className="btn-add-product" variant="light">Add Product</Button>
-						  	</Col>
-						  	<Col>
-							  <Form.Group>
-							    <Form.Control as="select">
-							      <option>All Categories</option>
-							      <option>Electronics</option>
-							      <option>Furnitures</option>
-							      <option>Fashion</option>
-							      <option>Books</option>
-							    </Form.Control>
-							   </Form.Group>
-						  	</Col>
-						  	<Col>
-						  		<Card body className="customize-field">
-								  <Form.Group id="formGridCheckbox">
-								    <Form.Check inline type="checkbox" label="Image" />
-								    <Form.Check inline type="checkbox" label="Description" />
-								    <Form.Check inline type="checkbox" label="Price" />
-								    <Form.Check inline type="checkbox" label="Quantity" />
-								  </Form.Group>
-								</Card>
-						  	</Col>
-						</Row>
-					</Form>
+					<div className="row rm">
+						<div className="col-md-4">
+						    <Form.Control type="text" placeholder="Search Product" />
+					  	</div>
+					  	<div className="col-md-4">
+					  		<Link to="/add-product">
+					  			<Button variant="light" style={{width: '100%', border: '1px solid #ced4da'}}>Add Product</Button>
+					  		</Link>
+					  	</div>
+					  	<div className="col-md-4">
+					  		<Card body className="customize-field">
+							  <Form.Group id="formGridCheckbox">
+							    <Form.Check inline type="checkbox" label="Price" />
+							    <Form.Check inline type="checkbox" label="Quantity" />
+							    <Form.Check inline type="checkbox" label="Description" />
+							  </Form.Group>
+							</Card>
+					  	</div>
+					</div>
 				</div>
-				<AllProducts productsList={this.state.productsList}></AllProducts>
+				<AllProducts productsList={this.props.products}></AllProducts>
 			</div>
 		);
 	}
 }
 
-export default Home;
+function mapStateToProps(state) {
+	return {
+		products: state.products
+	}
+}
+
+export default connect(mapStateToProps, actions)(Home);

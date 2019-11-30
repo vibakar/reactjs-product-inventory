@@ -41,27 +41,32 @@ code {
   margin: 10px 0px 50px -10px;
 }
 
-.customize {
-  margin: 0px 0px 0px -15px;
-}
-
 .customize-field {
   height: 40px;
-  padding-left: 10px;
+  padding-left: 5px;
 }
 
 .customize-field .card-body {
   padding: 0.25rem;
 }
 
-.search-field {
-  width: 45%;
-  display: inline;
-  margin-right: 8%;
+.rm {
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
-.btn-add-product {
-  width: 45%;
-  margin-top: -3px;
-  border: 1px solid #ced4da;
+.emptyList .list-group-item {
+  border: none !important;
+}
+
+.add-prod-title {
+  text-align: center;
+  padding-top: 2%;
+}
+
+.add-prod-form {
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 70px
 }

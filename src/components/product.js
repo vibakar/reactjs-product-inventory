@@ -1,11 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 const Product = (props) => {
 	return (
 	    <div className="col-xs-12 col-sm-6 col-md-3">
 	      <Card style={{ width: '19rem', marginBottom: '20px' }}>
-		  <Card.Img style={{height: '200px'}} variant="top" src={props.product.image} />
+	      <Link to={`/productDetail/${props.product.id}`}>
+		  	<Card.Img style={{height: '200px'}} variant="top" src={props.product.image} />
+		  </Link>
 		  <Card.Body>
 		    <Card.Title>{props.product.name}</Card.Title>
 		    <Card.Text style={{height: '60px'}}>
@@ -20,8 +23,9 @@ const Product = (props) => {
 		    <ListGroupItem>&#8377;{props.product.price}</ListGroupItem>
 		  </ListGroup>
 		  <Card.Body>
-		    <Card.Link href="#">Edit</Card.Link>
-		    <Card.Link href="#">Delete</Card.Link>
+		    <Link to={`edit-product/${props.product.id}`}>Edit</Link>
+		    &nbsp;&nbsp;&nbsp;&nbsp;
+		    <Link to={`delete-product/${props.product.id}`}>Delete</Link>
 		  </Card.Body>
 		  </Card>
 	    </div>

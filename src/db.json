@@ -1,4 +1,4 @@
-export default {
+{
   "products": [
     {
       "id": 1,
@@ -7,18 +7,17 @@ export default {
       "manufacturer": "SONY",
       "price": 35000,
       "quantity": 2,
-      "description": "Experience the unmatched picture quality Sony televisions at great prices at Amazon India. ",
+      "description": "Experience the unmatched picture quality Sony televisions at great prices at Amazon India.",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSplxNvQwPDruZTSdiIvt45nJzu3QBSGYo0W3RToX9-MNwjdiGb"
     },
     {
-      "id": 2,
-      "name": "Table",
-      "category": "Furniture",
+      "name": "TV1",
       "manufacturer": "Samarth Enterprise",
-      "price": 20999,
       "quantity": 18,
+      "price": 20999,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqXbWfzRtZJI3mPDHd6T8_IVrsORPevGVtRWWg_mKi0FLCJmrZ",
       "description": "The table with glass top features a beautiful teak finished table.",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqXbWfzRtZJI3mPDHd6T8_IVrsORPevGVtRWWg_mKi0FLCJmrZ"
+      "id": 2
     },
     {
       "id": 3,
@@ -129,6 +128,15 @@ export default {
       "description": "This is a kind of mirror which can be used as mirror for wall, wall mirror.",
       "image": "https://www.bing.com/th?id=OIP.ZlOqNRly2dv65czcQFP3SwHaE7&w=300&h=199&c=7&o=5&dpr=2&pid=1.7",
       "id": 15
+    },
+    {
+      "name": "",
+      "manufacturer": "as",
+      "quantity": "1",
+      "price": "1",
+      "image": "q",
+      "description": "q",
+      "id": 16
     }
   ],
   "users": [
