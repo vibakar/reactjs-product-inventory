@@ -11,7 +11,7 @@
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSplxNvQwPDruZTSdiIvt45nJzu3QBSGYo0W3RToX9-MNwjdiGb"
     },
     {
-      "name": "TV1",
+      "name": "TV",
       "manufacturer": "Samarth Enterprise",
       "quantity": 18,
       "price": 20999,
@@ -20,14 +20,13 @@
       "id": 2
     },
     {
-      "id": 3,
       "name": "Bed",
-      "category": "Furniture",
       "manufacturer": "Forzza Furniture",
-      "price": 30500,
       "quantity": 15,
+      "price": 30500,
+      "image": "http://pluspng.com/img-png/bedroom-png-hd-modern-reclaimed-wood-platform-bed-modern-beds-grand-rapids-by-woodland-creek-1561.png",
       "description": "Enjoy deep and blissful sleep with this Forzza King Drawer Bed.",
-      "image": "http://pluspng.com/img-png/bedroom-png-hd-modern-reclaimed-wood-platform-bed-modern-beds-grand-rapids-by-woodland-creek-1561.png"
+      "id": 3
     },
     {
       "id": 4,

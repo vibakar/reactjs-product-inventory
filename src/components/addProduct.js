@@ -48,19 +48,18 @@ class AddProduct extends React.Component {
 		let product = this.state.product;
 		product[event.target.name] = event.target.value;
 		this.setState({product: product});
-		console.log(this.state)
 	}
 
-	updateProductState = (nextProps, nextState) => {
-		// let product = this.state.product;
-		// product.id = this.props.products[0].id;
-		// product.name = this.props.products[0].name;
-		// product.manufacturer = this.props.products[0].manufacturer;
-		// product.quantity = this.props.products[0].quantity;
-		// product.price = this.props.products[0].price;
-		// product.image = this.props.products[0].image;
-		// product.description = this.props.products[0].description;
-		// this.setState({product: product});
+	componentWillReceiveProps(newProps) {
+		let product = this.state.product;
+		product.id = newProps.products[0].id;
+		product.name = newProps.products[0].name;
+		product.manufacturer = newProps.products[0].manufacturer;
+		product.quantity = newProps.products[0].quantity;
+		product.price = newProps.products[0].price;
+		product.image = newProps.products[0].image;
+		product.description = newProps.products[0].description;
+		this.setState({product: product});
 	}
 
 	cancel = () => {
@@ -83,7 +82,7 @@ class AddProduct extends React.Component {
 			            type="text"
 			            name="name"
 			            placeholder="Product Name"
-			            defaultValue={this.props.products.length > 0 ? this.props.products[0].name : ''}
+			            defaultValue={(this.state.isEditProduct && this.props.products.length > 0) ? this.props.products[0].name : ''}
 			            onChange={this.onInputChange}
 			          />
 			          <Form.Control.Feedback type="invalid">Product Name is required</Form.Control.Feedback>
@@ -95,7 +94,7 @@ class AddProduct extends React.Component {
 			            type="text"
 			            name="manufacturer"
 			            placeholder="Manufacturer"
-			            defaultValue={this.props.products.length > 0 ? this.props.products[0].manufacturer : ''}
+			            defaultValue={(this.state.isEditProduct && this.props.products.length > 0) ? this.props.products[0].manufacturer : ''}
 			            onChange={this.onInputChange}
 			            required
 			          />
@@ -111,7 +110,7 @@ class AddProduct extends React.Component {
 				              name="quantity"
 				              placeholder="Quantity"
 				              onChange={this.onInputChange}
-				              defaultValue={this.props.products.length > 0 ? this.props.products[0].quantity : ''}
+				              defaultValue={(this.state.isEditProduct && this.props.products.length > 0) ? this.props.products[0].quantity : ''}
 				              required
 				            />
 				            <Form.Control.Feedback type="invalid">
@@ -125,7 +124,7 @@ class AddProduct extends React.Component {
 				              type="number"
 				              name="price"
 				              placeholder="Price"
-				              defaultValue={this.props.products.length > 0 ? this.props.products[0].price : ''}
+				              defaultValue={(this.state.isEditProduct && this.props.products.length > 0) ? this.props.products[0].price : ''}
 				              onChange={this.onInputChange}
 				              required
 				            />
@@ -141,7 +140,7 @@ class AddProduct extends React.Component {
 			              type="text"
 			              name="image"
 			              placeholder="Image URL"
-			              defaultValue={this.props.products.length > 0 ? this.props.products[0].image : ''}
+			              defaultValue={(this.state.isEditProduct && this.props.products.length > 0) ? this.props.products[0].image : ''}
 			              onChange={this.onInputChange}
 			              required
 			            />
@@ -158,7 +157,7 @@ class AddProduct extends React.Component {
 			              rows="3"
 			              cols="40"
 			              placeholder="Description"
-			              defaultValue={this.props.products.length > 0 ? this.props.products[0].description : ''}
+			              defaultValue={(this.state.isEditProduct && this.props.products.length > 0) ? this.props.products[0].description : ''}
 			              onChange={this.onInputChange}
 			              required
 			            />
