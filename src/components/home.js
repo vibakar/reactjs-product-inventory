@@ -8,12 +8,37 @@ import * as actions from '../actions/productActions';
 
 class Home extends React.Component {
 
+	constructor() {
+		super();
+		this.state = {
+			products: [],
+			displayPrice: true,
+			displayQuantity: false,
+			displayDesc: true
+		};
+	}
+
 	componentDidMount() {
 		this.props.getAllProducts();
 	}
 
 	triggerDeleteProduct = (id, index) => {
 		this.props.deleteProduct(id, index);
+	}
+
+	onSearch = (e) => {
+		let filteredProducts = this.props.products.filter(product => {
+			return product.name.toLowerCase().indexOf(e.target.value.toLowerCase()) >= 0;
+		});
+		this.setState({products: filteredProducts});
+	}
+
+	componentWillReceiveProps(newProps) {
+		this.setState({products: newProps.products});
+	}
+
+	handleFieldChange = (e) => {
+		this.setState({[e.target.name]: e.target.checked});
 	}
 
 	render() {
@@ -23,7 +48,7 @@ class Home extends React.Component {
 				<div style={{marginTop: '20px', marginLeft: '5px'}}>
 					<div className="row rm">
 						<div className="col-md-4">
-						    <Form.Control type="text" placeholder="Search Product" />
+						    <Form.Control type="text" placeholder="Search Product" onChange={this.onSearch}/>
 					  	</div>
 					  	<div className="col-md-4">
 					  		<Link to="/add-product">
@@ -33,15 +58,15 @@ class Home extends React.Component {
 					  	<div className="col-md-4">
 					  		<Card body className="customize-field">
 							  <Form.Group id="formGridCheckbox">
-							    <Form.Check inline type="checkbox" label="Price" />
-							    <Form.Check inline type="checkbox" label="Quantity" />
-							    <Form.Check inline type="checkbox" label="Description" />
+							    <Form.Check inline type="checkbox" name="displayPrice" onChange={this.handleFieldChange} label="Price" checked={this.state.displayPrice}/>
+							    <Form.Check inline type="checkbox" name="displayQuantity" onChange={this.handleFieldChange} label="Quantity" checked={this.state.displayQuantity}/>
+							    <Form.Check inline type="checkbox" name="displayDesc" onChange={this.handleFieldChange} label="Description" checked={this.state.displayDesc}/>
 							  </Form.Group>
 							</Card>
 					  	</div>
 					</div>
 				</div>
-				<AllProducts productsList={this.props.products} triggerDeleteProduct={this.triggerDeleteProduct}></AllProducts>
+				<AllProducts {...this.state} triggerDeleteProduct={this.triggerDeleteProduct}></AllProducts>
 			</div>
 		);
 	}

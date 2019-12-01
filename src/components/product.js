@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Card, ListGroup, ListGroupItem, Modal, Button } from 'react-bootstrap';
+import { Card, ListGroup, ListGroupItem, Modal, Button, Badge } from 'react-bootstrap';
+import { ruppeeFormat } from '../helper';
 
 const Product = (props) => {
   const [show, setShow] = useState(false);
@@ -21,16 +22,28 @@ const Product = (props) => {
 	  </Link>
 	  <Card.Body>
 	    <Card.Title>{props.product.name}</Card.Title>
-	    <Card.Text style={{height: '60px'}}>
-	      { 
-	      	props.product.description.length > 85 ? 
-	      	props.product.description.slice(0, 85)+"..." :
-	      	props.product.description
-	      }
-	    </Card.Text>
+      {
+        props.displayDesc ? 
+    	    <Card.Text style={{height: '60px'}}>
+    	      { 
+    	      	props.product.description.length > 85 ? 
+    	      	props.product.description.slice(0, 85)+"..." :
+    	      	props.product.description
+    	      }
+    	    </Card.Text> : ''
+      }
 	  </Card.Body>
 	  <ListGroup className="list-group-flush">
-	    <ListGroupItem>&#8377;{props.product.price}</ListGroupItem>
+      {
+        props.displayPrice ? <ListGroupItem>&#8377;{ruppeeFormat(props.product.price)}</ListGroupItem> : ''
+      }
+      {
+        props.displayQuantity ? <ListGroupItem>
+                                 <Badge pill variant="secondary">
+                                    Q-{props.product.quantity}
+                                 </Badge>
+                                </ListGroupItem> : ''
+      }
 	  </ListGroup>
 	  <Card.Body>
 	    <Link to={`edit-product/${props.product.id}`}>Edit</Link>
