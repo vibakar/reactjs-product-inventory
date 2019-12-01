@@ -45,11 +45,13 @@ const Product = (props) => {
                                 </ListGroupItem> : ''
       }
 	  </ListGroup>
-	  <Card.Body>
-	    <Link to={`edit-product/${props.product.id}`}>Edit</Link>
-	    &nbsp;&nbsp;&nbsp;&nbsp;
-	    <a href="#!" onClick={handleShow}>Delete</a>
-	  </Card.Body>
+	  {
+      props.isLoggedIn ? <Card.Body>
+                          <Link to={`edit-product/${props.product.id}`}>Edit</Link>
+                          &nbsp;&nbsp;&nbsp;&nbsp;
+                          <a href="#!" onClick={handleShow}>Delete</a>
+                        </Card.Body> : ''
+    }
 	  </Card>
 
 	  <Modal show={show} onHide={handleClose}>

@@ -10,8 +10,10 @@ class Home extends React.Component {
 
 	constructor() {
 		super();
+		let userId = sessionStorage.getItem('userId');
 		this.state = {
 			products: [],
+			isLoggedIn: userId ? true : false,
 			displayPrice: true,
 			displayQuantity: false,
 			displayDesc: true
@@ -20,6 +22,10 @@ class Home extends React.Component {
 
 	componentDidMount() {
 		this.props.getAllProducts();
+	}
+
+	componentWillReceiveProps(newProps) {
+		this.setState({products: newProps.products});
 	}
 
 	triggerDeleteProduct = (id, index) => {
@@ -33,10 +39,6 @@ class Home extends React.Component {
 		this.setState({products: filteredProducts});
 	}
 
-	componentWillReceiveProps(newProps) {
-		this.setState({products: newProps.products});
-	}
-
 	handleFieldChange = (e) => {
 		this.setState({[e.target.name]: e.target.checked});
 	}
@@ -47,15 +49,18 @@ class Home extends React.Component {
 				<Banner></Banner>
 				<div style={{marginTop: '20px', marginLeft: '5px'}}>
 					<div className="row rm">
-						<div className="col-md-4">
+						<div className={this.state.isLoggedIn ? "col-md-4" : "col-md-6"}>
 						    <Form.Control type="text" placeholder="Search Product" onChange={this.onSearch}/>
 					  	</div>
-					  	<div className="col-md-4">
-					  		<Link to="/add-product">
-					  			<Button variant="light" style={{width: '100%', border: '1px solid #ced4da'}}>Add Product</Button>
-					  		</Link>
-					  	</div>
-					  	<div className="col-md-4">
+					  	{
+					  		this.state.isLoggedIn ?
+					  		<div className="col-md-4">
+						  		<Link to="/add-product">
+						  			<Button variant="light" style={{width: '100%', border: '1px solid #ced4da'}}>Add Product</Button>
+						  		</Link>
+						  	</div>: ''
+						 }
+					  	<div className={this.state.isLoggedIn ? "col-md-4" : "col-md-6"}>
 					  		<Card body className="customize-field">
 							  <Form.Group id="formGridCheckbox">
 							    <Form.Check inline type="checkbox" name="displayPrice" onChange={this.handleFieldChange} label="Price" checked={this.state.displayPrice}/>
