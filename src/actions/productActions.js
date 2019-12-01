@@ -19,6 +19,10 @@ function editProductSuccess(product, history) {
   return { type: types.EDIT_PRODUCT, product};
 }
 
+function deleteProductSuccess(index) {
+  return { type: types.DELETE_PRODUCT, index};
+}
+
 export function getAllProducts() {
   return function(dispatch) {
     return ProductApi.getAllProducts().then(products => {
@@ -57,4 +61,14 @@ export function editProduct(product, history) {
       throw(error);
     });
   };
+}
+
+export function deleteProduct(id, index) {
+  return function (dispatch, getState) {
+    return ProductApi.deleteProduct(id).then(product => {
+      dispatch(deleteProductSuccess(index));
+    }).catch(error => {
+      throw(error);
+    });
+  }
 }

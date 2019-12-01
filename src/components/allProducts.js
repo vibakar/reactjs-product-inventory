@@ -6,7 +6,7 @@ const AllProducts = (props) => {
 		<div className="row product-cards">
 			{ 
 			  props.productsList.map((product, i) => {
-				return <Product key={i} product={product}></Product>
+				return <Product key={i} product={product} index={i} triggerDeleteProduct={props.triggerDeleteProduct}></Product>
 			  })
 			}
 		</div>

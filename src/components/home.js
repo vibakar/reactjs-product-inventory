@@ -12,6 +12,10 @@ class Home extends React.Component {
 		this.props.getAllProducts();
 	}
 
+	triggerDeleteProduct = (id, index) => {
+		this.props.deleteProduct(id, index);
+	}
+
 	render() {
 		return (
 			<div>
@@ -37,7 +41,7 @@ class Home extends React.Component {
 					  	</div>
 					</div>
 				</div>
-				<AllProducts productsList={this.props.products}></AllProducts>
+				<AllProducts productsList={this.props.products} triggerDeleteProduct={this.triggerDeleteProduct}></AllProducts>
 			</div>
 		);
 	}

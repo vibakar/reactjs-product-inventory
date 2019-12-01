@@ -21,4 +21,9 @@ export default class ProductApi {
 		return axios.put("http://localhost:4000/products/" + product.id, product)
 				.then(res => res.data);
 	}
+
+	static deleteProduct(id) {
+		return axios.delete("http://localhost:4000/products/" + id)
+				.then(res => res.data);
+	}
 }
