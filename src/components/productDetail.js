@@ -1,14 +1,26 @@
 import React from 'react';
 import { Card, ListGroup, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions/productActions';
-import { ruppeeFormat } from '../helper';
+import { ruppeeFormat, isAuthenticated } from '../helper';
 
 class ProductDetail extends React.Component {
+	constructor(props) {
+		super(props);
+		this.authenticate();
+	}
+
 	componentDidMount() {
 		let productId = this.props.match.params.id;
 		this.props.getSingleProduct(productId);
+	}
+
+	authenticate = () => {
+		if(!isAuthenticated()) {
+			alert("Please login to view product details!");
+			this.props.history.push('/');
+		}
 	}
 
 	render() {
@@ -53,4 +65,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps, actions)(ProductDetail);
+export default connect(mapStateToProps, actions)(withRouter(ProductDetail));

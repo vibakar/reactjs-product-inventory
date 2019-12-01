@@ -3,6 +3,7 @@ import { Form, Button, Card, Col } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions/productActions';
+import { isAuthenticated } from '../helper';
 
 class AddProduct extends React.Component {
 	constructor(props) {
@@ -19,6 +20,7 @@ class AddProduct extends React.Component {
 			validated: false,
 			isEditProduct: false
 		}
+		this.authenticate();
 	}
 
 	componentDidMount() {
@@ -26,6 +28,14 @@ class AddProduct extends React.Component {
 		if(productId) {
 	      this.setState({isEditProduct: true});
 	      this.props.getSingleProduct(productId);
+		}
+	}
+
+
+	authenticate = () => {
+		if(!isAuthenticated()) {
+			alert("Please login to add or edit product!");
+			this.props.history.push('/');
 		}
 	}
 

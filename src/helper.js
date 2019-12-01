@@ -12,3 +12,10 @@ export function ruppeeFormat(value) {
 	var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + afterPoint;
 	return res;
 }
+
+export function isAuthenticated() {
+	let isLoggedIn = sessionStorage.getItem("userId");
+	if(isLoggedIn)
+		return true;
+	return false;
+}
