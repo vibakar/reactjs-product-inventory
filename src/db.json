@@ -126,8 +126,8 @@
       "lastName": "Kohli",
       "email": "virat@gmail.com",
       "password": "Virat@123",
-      "location": "",
-      "mobileNo": 7639228797,
+      "city": "",
+      "mobile": 7639228797,
       "views": {
         "1": 16,
         "2": 4,

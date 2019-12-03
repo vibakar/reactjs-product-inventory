@@ -6,6 +6,9 @@ export default function userReducer(state = initialState.users, action) {
     case types.FETCH_ALL_USERS:
       return action.users;
 
+    case types.FETCH_SINGLE_USER:
+      return [action.user];
+      
     default:
       return state;
   }

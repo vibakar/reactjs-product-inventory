@@ -41,6 +41,10 @@ class Header extends React.Component {
 		this.setState({showSignin: true});
 	}
 
+	goToProfile = () => {
+		this.props.history.push('/profile');
+	}
+
 	logout = () => {
 		sessionStorage.removeItem('userId');
 		this.props.history.push('/');
@@ -60,7 +64,7 @@ class Header extends React.Component {
 				      {
 				      	this.state.isLoggedIn ?
 					       	<NavDropdown title="Vibakar" id="collasible-nav-dropdown">
-			        	    	<NavDropdown.Item>Profile</NavDropdown.Item>
+			        	    	<NavDropdown.Item onClick={this.goToProfile}>Profile</NavDropdown.Item>
 			        	    	<NavDropdown.Item onClick={this.logout}>Logout</NavDropdown.Item>
 			      		    </NavDropdown> : ''
 			      	  }
