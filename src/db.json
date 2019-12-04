@@ -122,20 +122,13 @@
   ],
   "users": [
     {
+      "id": 1,
       "firstName": "Virat",
       "lastName": "Kohli",
       "email": "virat@gmail.com",
       "password": "Virat@123",
-      "city": "",
-      "mobile": 7639228797,
-      "views": {
-        "1": 16,
-        "2": 4,
-        "3": 3,
-        "4": 4,
-        "7": 1
-      },
-      "id": 1
+      "city": "Cbe",
+      "mobile": "7639228797"
     }
   ]
 }

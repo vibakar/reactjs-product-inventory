@@ -11,4 +11,9 @@ export default class UserApi {
 		return axios.get("http://localhost:4000/users/" + id)
 				.then(res => res.data);
 	}
+
+	static updateUser(user) {
+		return axios.put("http://localhost:4000/users/" + user.id, user)
+				.then(res => res.data);
+	}
 }

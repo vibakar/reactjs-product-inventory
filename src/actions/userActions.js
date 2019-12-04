@@ -9,6 +9,10 @@ function getUserSuccess(user) {
 	return { type: types.FETCH_SINGLE_USER, user};
 }
 
+function updateUserSuccess(user) {
+  return { type: types.UPDATE_SINGLE_USER, user};
+}
+
 export function getAllUsers() {
   return function(dispatch) {
     return UserApi.getAllUsers().then(users => {
@@ -23,6 +27,16 @@ export function getUserDetails(id) {
   return function(dispatch) {
     return UserApi.getSingleUser(id).then(user => {
       dispatch(getUserSuccess(user));
+    }).catch(error => {
+      throw(error);
+    });
+  };
+}
+
+export function updateUser(user) {
+  return function(dispatch) {
+    return UserApi.updateUser(user).then(user => {
+      dispatch(updateUserSuccess(user));
     }).catch(error => {
       throw(error);
     });

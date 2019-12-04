@@ -8,7 +8,12 @@ export default function userReducer(state = initialState.users, action) {
 
     case types.FETCH_SINGLE_USER:
       return [action.user];
-      
+     
+    case types.UPDATE_SINGLE_USER:
+    	const user = action.user;
+		const {firstName, lastName, city, mobile} = user;
+		return state.map(u => (u.id === action.user.id ? {...u, firstName, lastName, city, mobile} : u));
+
     default:
       return state;
   }
