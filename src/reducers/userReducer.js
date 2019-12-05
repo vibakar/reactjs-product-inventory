@@ -14,6 +14,9 @@ export default function userReducer(state = initialState.users, action) {
 		const {firstName, lastName, city, mobile} = user;
 		return state.map(u => (u.id === action.user.id ? {...u, firstName, lastName, city, mobile} : u));
 
+	case types.ADD_NEW_USER:
+		return [...state, action.user];
+
     default:
       return state;
   }

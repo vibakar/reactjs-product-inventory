@@ -45,7 +45,7 @@ class Signin extends React.Component {
 				<Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
 				  <Form.Group controlId="formBasicEmail">
 				    <Form.Label>Email</Form.Label>
-				    <Form.Control type="email" name="email" placeholder="Enter email" onChange={this.onInputChange} required/>
+				    <Form.Control type="email" name="email" placeholder="Enter Email" onChange={this.onInputChange} required/>
 				    <Form.Control.Feedback type="invalid">{this.state.email.length === 0 ? 'Email is required' : 'Enter valid email'}</Form.Control.Feedback>
 				  </Form.Group>
 

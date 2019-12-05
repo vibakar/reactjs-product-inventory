@@ -13,6 +13,12 @@ function updateUserSuccess(user) {
   return { type: types.UPDATE_SINGLE_USER, user};
 }
 
+function addUserSuccess(user) {
+  sessionStorage.setItem('userId', user.id);
+  window.location.reload();
+  return { type: types.ADD_NEW_USER, user};
+}
+
 export function getAllUsers() {
   return function(dispatch) {
     return UserApi.getAllUsers().then(users => {
@@ -37,6 +43,16 @@ export function updateUser(user) {
   return function(dispatch) {
     return UserApi.updateUser(user).then(user => {
       dispatch(updateUserSuccess(user));
+    }).catch(error => {
+      throw(error);
+    });
+  };
+}
+
+export function addUser(user) {
+  return function(dispatch) {
+    return UserApi.addUser(user).then(user => {
+      dispatch(addUserSuccess(user));
     }).catch(error => {
       throw(error);
     });

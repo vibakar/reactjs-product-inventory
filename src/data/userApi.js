@@ -16,4 +16,9 @@ export default class UserApi {
 		return axios.put("http://localhost:4000/users/" + user.id, user)
 				.then(res => res.data);
 	}
+
+	static addUser(user) {
+		return axios.post("http://localhost:4000/users/", user)
+				.then(res => res.data);
+	}
 }

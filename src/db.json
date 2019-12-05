@@ -129,6 +129,15 @@
       "password": "Virat@123",
       "city": "Cbe",
       "mobile": "7639228797"
+    },
+    {
+      "firstName": "Vibakar",
+      "lastName": "K V",
+      "email": "vibakar@gmail.com",
+      "password": "Password@123",
+      "id": 2,
+      "city": "Coimbatore",
+      "mobile": "7639228797"
     }
   ]
 }
