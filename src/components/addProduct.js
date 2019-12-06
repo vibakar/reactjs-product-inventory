@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions/productActions';
 import { isAuthenticated } from '../helper';
+import { Prompt } from "react-router-dom";
 
 class AddProduct extends React.Component {
 	constructor(props) {
@@ -79,6 +80,12 @@ class AddProduct extends React.Component {
 	render() {
 		return (
 			<div>
+			  {!this.state.isEditProduct ? 
+			  <Prompt
+			   when={!!this.state.product.name || !!this.state.product.manufacturer || !!this.state.product.quantity ||
+				 !!this.state.product.price || !!this.state.product.image || !!this.state.product.description}
+               message={location => 'There are some unsaved changes, are you sure to leave this page?'}
+              /> : '' }
 			  <div className="add-prod-title">
 			  	<strong>{this.state.isEditProduct ? 'Edit Product' : 'Add Product'}</strong>
 			  </div>

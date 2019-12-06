@@ -90,7 +90,7 @@ class PersonalDetails extends React.Component {
 										<Form.Group as={Col}>
 											<Form.Label>City</Form.Label>
 											<Form.Control type="text" placeholder="Enter City" name="city" onChange={this.onInputChange}
-											 defaultValue={this.state.user.city} disabled={this.state.disableFields} minlength="2"/>
+											 defaultValue={this.state.user.city} disabled={this.state.disableFields} minLength="2"/>
 											 <Form.Control.Feedback type="invalid">Enter valid city name</Form.Control.Feedback>
 										</Form.Group>
 									</Form.Row>
@@ -99,7 +99,7 @@ class PersonalDetails extends React.Component {
 										<Form.Group as={Col}>
 											<Form.Label>Mobile</Form.Label>
 											<Form.Control type="text" placeholder="Enter Mobile No" name="mobile" onChange={this.onInputChange}
-											 defaultValue={this.state.user.mobile} disabled={this.state.disableFields} minlength="10" maxlength="10"/>
+											 defaultValue={this.state.user.mobile} disabled={this.state.disableFields} minLength="10" maxLength="10"/>
 											 <Form.Control.Feedback type="invalid">Mobile No should have 10 digits</Form.Control.Feedback>
 										</Form.Group>
 										<Form.Group as={Col}></Form.Group>
