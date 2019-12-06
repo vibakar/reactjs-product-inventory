@@ -19,7 +19,8 @@ class AddProduct extends React.Component {
 				description: ''
 			},
 			validated: false,
-			isEditProduct: false
+			isEditProduct: false,
+			isUnsaved: false
 		}
 		this.authenticate();
 	}
@@ -58,7 +59,18 @@ class AddProduct extends React.Component {
 	onInputChange = (event) => {
 		let product = this.state.product;
 		product[event.target.name] = event.target.value;
-		this.setState({product: product});
+
+		let keys = Object.keys(product);
+		let isAllEmpty = keys.every(k => product[k] == '');		
+		if(isAllEmpty)
+			this.setState({product: product, isUnsaved: false});
+		else {
+			let isAllFilled = keys.every(k => product[k] != '');
+			if(isAllFilled)
+				this.setState({product: product, isUnsaved: false});
+			else
+				this.setState({product: product, isUnsaved: true});
+		}
 	}
 
 	componentWillReceiveProps(newProps) {
@@ -82,8 +94,7 @@ class AddProduct extends React.Component {
 			<div>
 			  {!this.state.isEditProduct ? 
 			  <Prompt
-			   when={!!this.state.product.name || !!this.state.product.manufacturer || !!this.state.product.quantity ||
-				 !!this.state.product.price || !!this.state.product.image || !!this.state.product.description}
+			   when={this.state.isUnsaved}
                message={location => 'There are some unsaved changes, are you sure to leave this page?'}
               /> : '' }
 			  <div className="add-prod-title">
