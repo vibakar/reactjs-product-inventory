@@ -1,6 +1,6 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-import { Accordion, Card, Button } from 'react-bootstrap';
+import { Accordion, Card, Button, Form } from 'react-bootstrap';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import * as actions from '../actions/userActions';
@@ -34,7 +34,8 @@ class TopViewedProduct extends React.Component {
 				      data: []
 				    }
 				  ]
-				}
+				},
+			count: 5
 		}
 	}
 
@@ -46,23 +47,35 @@ class TopViewedProduct extends React.Component {
 
 	componentWillReceiveProps(newProps) {
 		let views = newProps.users[0].views ? newProps.users[0].views : {};
-		let keys = Object.keys(views);
-		let data = this.state.data;
-		data.datasets[0].data = Object.values(views);
-		data.labels = this.getProductNames(keys);
-		this.setState({data: data});
+		this.sortAndMapProducts(views, 5);
 	}
 
-	getProductNames(keys) {
-		let productNames = [];
-		keys.forEach(k => {
-			this.props.products.forEach(p => {
-				let key = parseInt(k);
-				if(key === p.id)
-					productNames.push(p.name)
-			});
-		});
-		return productNames;
+	sortAndMapProducts(views, count) {
+		let sortedProducts = [];
+	  	for (var productId in views) {
+	  	  let pId = parseInt(productId);
+	      let prodDetail = this.props.products.find((product) => product.id === pId);
+	      if(prodDetail) {
+	  	    sortedProducts.push([prodDetail.name, views[productId]]);
+	      }
+	  	}
+	    sortedProducts.sort(function(a, b) {
+		    return b[1] - a[1];
+	    });
+		let data = this.state.data;
+		data.labels = [];
+		data.datasets[0].data = [];
+		let len = (count <= sortedProducts.length) ? count : sortedProducts.length;
+		for (var i = 0; i < len; i++) {
+	    	data.labels.push(sortedProducts[i][0]);
+	    	data.datasets[0].data.push(sortedProducts[i][1]);
+	    }
+		this.setState({data: data, count: count});
+	}
+
+	onCountChange = (e) => {
+		let views = this.props.users[0].views ? this.props.users[0].views : {};
+		this.sortAndMapProducts(views, e.target.value);
 	}
 
 	render() {
@@ -79,12 +92,23 @@ class TopViewedProduct extends React.Component {
 						    </Card.Header>
 						    <Accordion.Collapse eventKey="0">
 						      <Card.Body>
-						      	<Bar
-								  data={this.state.data}
-								  width={80}
-								  height={350}
-								  options={{ maintainAspectRatio: false }}
-								/>
+						      	<div className="w-25">
+						      		<Form.Group>
+									    <Form.Control as="select" onChange={this.onCountChange} value={this.state.count}>
+									      <option>3</option>
+									      <option>5</option>
+									      <option>10</option>
+									    </Form.Control>
+									</Form.Group>
+						      	</div>
+						      	<div>
+							      	<Bar
+									  data={this.state.data}
+									  width={80}
+									  height={350}
+									  options={{ maintainAspectRatio: false }}
+									/>
+								</div>
 						      </Card.Body>
 						    </Accordion.Collapse>
 						  </Card>
