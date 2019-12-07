@@ -21,4 +21,19 @@ export default class UserApi {
 		return axios.post("http://localhost:4000/users/", user)
 				.then(res => res.data);
 	}
+
+	static updateViews(userId, productId) {
+		return axios.get("http://localhost:4000/users/" + userId)
+				.then(res => {
+					let user = res.data
+					if(user.views) {
+				          user.views[productId] = user.views[productId] ? user.views[productId] + 1 : 1;
+				    }
+				    else {
+				        user.views = {};
+				        user.views[productId] = 1;
+				    }
+				    return UserApi.updateUser(user)
+				});
+	}
 }

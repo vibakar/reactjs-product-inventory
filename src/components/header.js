@@ -9,11 +9,18 @@ import Signin from './signin';
 class Header extends React.Component {
 	constructor(props) {
 		super(props);
-		let userId = sessionStorage.getItem('userId');
 		this.state = {
-			isLoggedIn: userId ? true : false,
+			isLoggedIn: false,
 			showModal: false,
 			showSignin: true
+		}
+	}
+
+	componentDidMount() {
+		let userId = sessionStorage.getItem('userId');
+		if(userId){
+			this.props.getUserDetails(userId);
+			this.setState({isLoggedIn: true});
 		}
 	}
 
@@ -63,7 +70,7 @@ class Header extends React.Component {
 				      {!this.state.isLoggedIn ? <Nav.Link className="c-wh" onClick={this.showModal}>Login</Nav.Link> : ''}
 				      {
 				      	this.state.isLoggedIn ?
-					       	<NavDropdown title="Vibakar" id="collasible-nav-dropdown">
+					       	<NavDropdown title={this.props.users && this.props.users.length > 0 ? this.props.users[0].firstName : ''} id="collasible-nav-dropdown">
 			        	    	<NavDropdown.Item onClick={this.goToProfile}>Profile</NavDropdown.Item>
 			        	    	<NavDropdown.Item onClick={this.logout}>Logout</NavDropdown.Item>
 			      		    </NavDropdown> : ''

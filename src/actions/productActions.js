@@ -28,8 +28,8 @@ function getUserSuccess(user) {
   return { type: types.FETCH_SINGLE_USER, user};
 }
 
-function updateUserSuccess(user) {
-  return { type: types.UPDATE_SINGLE_USER, user};
+function updateViewsSuccess(user) {
+  return { type: types.UPDATE_PRODUCT_VIEWS, user};
 }
 
 export function getAllProducts() {
@@ -92,10 +92,10 @@ export function getUserDetails(id) {
   };
 }
 
-export function updateUser(user) {
+export function updateViews(userId, productId) {
   return function(dispatch) {
-    return UserApi.updateUser(user).then(user => {
-      dispatch(updateUserSuccess(user));
+    return UserApi.updateViews(userId, productId).then(user => {
+      dispatch(updateViewsSuccess(user));
     }).catch(error => {
       throw(error);
     });

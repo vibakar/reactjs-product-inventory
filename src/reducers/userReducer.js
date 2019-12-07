@@ -11,13 +11,16 @@ export default function userReducer(state = initialState.users, action) {
      
     case types.UPDATE_SINGLE_USER:
     	const user = action.user;
-		const {firstName, lastName, city, mobile} = user;
-		return state.map(u => (u.id === action.user.id ? {...u, firstName, lastName, city, mobile} : u));
+		  const {firstName, lastName, city, mobile} = user;
+		  return state.map(u => (u.id === action.user.id ? {...u, firstName, lastName, city, mobile} : u));
 
-	case types.ADD_NEW_USER:
-		return [...state, action.user];
+    case types.UPDATE_PRODUCT_VIEWS:
+      return [action.user];
 
-    default:
-      return state;
-  }
+  	case types.ADD_NEW_USER:
+  		return [...state, action.user];
+
+      default:
+        return state;
+    }
 }

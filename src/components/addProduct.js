@@ -13,8 +13,8 @@ class AddProduct extends React.Component {
 			product: {
 				name: '',
 				manufacturer: '',
-				quantity: undefined,
-				price: undefined,
+				quantity: '',
+				price: '',
 				image: '',
 				description: ''
 			},
@@ -61,11 +61,11 @@ class AddProduct extends React.Component {
 		product[event.target.name] = event.target.value;
 
 		let keys = Object.keys(product);
-		let isAllEmpty = keys.every(k => product[k] == '');		
+		let isAllEmpty = keys.every(k => product[k] === '');		
 		if(isAllEmpty)
 			this.setState({product: product, isUnsaved: false});
 		else {
-			let isAllFilled = keys.every(k => product[k] != '');
+			let isAllFilled = keys.every(k => product[k] !== '');
 			if(isAllFilled)
 				this.setState({product: product, isUnsaved: false});
 			else
