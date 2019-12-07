@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
 import UserApi from '../data/userApi';
+import ProductApi from '../data/productApi';
 
 function getAllUsersSuccess(users) {
   return { type: types.FETCH_ALL_USERS, users};
@@ -11,6 +12,10 @@ function getUserSuccess(user) {
 
 function updateUserSuccess(user) {
   return { type: types.UPDATE_SINGLE_USER, user};
+}
+
+function getAllProductsSuccess(products) {
+  return { type: types.FETCH_ALL_PRODUCTS, products};
 }
 
 function addUserSuccess(user) {
@@ -53,6 +58,16 @@ export function addUser(user) {
   return function(dispatch) {
     return UserApi.addUser(user).then(user => {
       dispatch(addUserSuccess(user));
+    }).catch(error => {
+      throw(error);
+    });
+  };
+}
+
+export function getAllProducts() {
+  return function(dispatch) {
+    return ProductApi.getAllProducts().then(products => {
+      dispatch(getAllProductsSuccess(products));
     }).catch(error => {
       throw(error);
     });

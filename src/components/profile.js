@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { isAuthenticated } from '../helper';
 import PersonalDetails from './personalDetails';
+import TopViewedProduct from './topViewedProduct';
 
 class Profile extends React.Component {
 	constructor(props) {
@@ -20,6 +21,7 @@ class Profile extends React.Component {
 		return (
 			<div>
 				<PersonalDetails></PersonalDetails>
+				<TopViewedProduct></TopViewedProduct>
 			</div>
 		)
 	}

@@ -128,7 +128,13 @@
       "email": "virat@gmail.com",
       "password": "Virat@123",
       "city": "Cbe",
-      "mobile": "7639228797"
+      "mobile": "7639228797",
+      "views": {
+        "1": 5,
+        "5": 1,
+        "6": 1,
+        "7": 1
+      }
     },
     {
       "firstName": "Vibakar",
