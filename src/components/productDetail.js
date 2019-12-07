@@ -20,7 +20,24 @@ class ProductDetail extends React.Component {
 		if(!isAuthenticated()) {
 			alert("Please login to view product details!");
 			this.props.history.push('/');
+		} else {
+			this.props.getUserDetails(sessionStorage.getItem("userId"));
+			setTimeout(() => {
+				this.updateViews();
+			}, 1500);
 		}
+	}
+
+	updateViews = () => {
+		let productId = this.props.match.params.id;
+		let user = this.props.users[0];
+		if(user.views && user.views[productId])
+	        user.views[productId] = user.views[productId] + 1;
+	    else{
+	    	user.views = {};
+	        user.views[productId] = 1;
+	    }
+	    this.props.updateUser(user);
 	}
 
 	render() {
@@ -61,7 +78,8 @@ class ProductDetail extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		product: state.products
+		product: state.products,
+		users: state.users
 	}
 }
 

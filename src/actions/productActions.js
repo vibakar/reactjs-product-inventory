@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
 import ProductApi from '../data/productApi';
+import UserApi from '../data/userApi';
 
 function getAllProductsSuccess(products) {
   return { type: types.FETCH_ALL_PRODUCTS, products};
@@ -21,6 +22,14 @@ function editProductSuccess(product, history) {
 
 function deleteProductSuccess(index) {
   return { type: types.DELETE_PRODUCT, index};
+}
+
+function getUserSuccess(user) {
+  return { type: types.FETCH_SINGLE_USER, user};
+}
+
+function updateUserSuccess(user) {
+  return { type: types.UPDATE_SINGLE_USER, user};
 }
 
 export function getAllProducts() {
@@ -71,4 +80,24 @@ export function deleteProduct(id, index) {
       throw(error);
     });
   }
+}
+
+export function getUserDetails(id) {
+  return function(dispatch) {
+    return UserApi.getSingleUser(id).then(user => {
+      dispatch(getUserSuccess(user));
+    }).catch(error => {
+      throw(error);
+    });
+  };
+}
+
+export function updateUser(user) {
+  return function(dispatch) {
+    return UserApi.updateUser(user).then(user => {
+      dispatch(updateUserSuccess(user));
+    }).catch(error => {
+      throw(error);
+    });
+  };
 }
