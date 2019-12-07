@@ -92,16 +92,19 @@ class TopViewedProduct extends React.Component {
 						    </Card.Header>
 						    <Accordion.Collapse eventKey="0">
 						      <Card.Body>
-						      	<div className="w-25">
-						      		<Form.Group>
-									    <Form.Control as="select" onChange={this.onCountChange} value={this.state.count}>
-									      <option>3</option>
-									      <option>5</option>
-									      <option>10</option>
-									    </Form.Control>
-									</Form.Group>
+						      	<div className="row rm">
+						      		<div className="col-md-9"></div>
+						      		<div className="col-md-3">
+						      			<Form.Group>
+										    <Form.Control as="select" onChange={this.onCountChange} value={this.state.count}>
+										      <option>3</option>
+										      <option>5</option>
+										      <option>10</option>
+										    </Form.Control>
+										</Form.Group>
+						      		</div>
 						      	</div>
-						      	<div>
+						      	<div className="w-100">
 							      	<Bar
 									  data={this.state.data}
 									  width={80}
