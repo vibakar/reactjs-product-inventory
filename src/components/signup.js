@@ -14,7 +14,8 @@ class Signup extends React.Component {
 				email: "",
 				password: "",
 				confirmPassword: ""
-			}
+			},
+			isSignupErr: false
 		}
 	}
 
@@ -31,7 +32,7 @@ class Signup extends React.Component {
 	      	delete this.state.user.confirmPassword;
 	        this.props.addUser(this.state.user);
 	      } else {
-	      	console.log("email already registered");
+	      	this.setState({isSignupErr: true});
 	      }
 	      
 	    }
@@ -45,43 +46,50 @@ class Signup extends React.Component {
 
 	render() {
 		return(
-			<Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
-			 <Form.Row>
-			    <Form.Group as={Col}>
-			      <Form.Label>First Name</Form.Label>
-			      <Form.Control type="text" placeholder="Enter First Name" name="firstName" onChange={this.onInputChange} required />
-			      <Form.Control.Feedback type="invalid">First Name is required</Form.Control.Feedback>
-			    </Form.Group>
+			<div>
+				<p className="text-center text-danger">{this.state.isSignupErr ? 'Email already registered!!' : ''}</p>
+				<Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
+				 <Form.Row>
+				    <Form.Group as={Col}>
+				      <Form.Label>First Name</Form.Label>
+				      <Form.Control type="text" placeholder="Enter First Name" name="firstName" onChange={this.onInputChange} required />
+				      <Form.Control.Feedback type="invalid">First Name is required</Form.Control.Feedback>
+				    </Form.Group>
 
-			    <Form.Group as={Col}>
-			      <Form.Label>Last Name</Form.Label>
-			      <Form.Control type="text" placeholder="Enter Last Name" name="lastName" onChange={this.onInputChange} required />
-			      <Form.Control.Feedback type="invalid">Last Name is required</Form.Control.Feedback>
-			    </Form.Group>
-			  </Form.Row>
+				    <Form.Group as={Col}>
+				      <Form.Label>Last Name</Form.Label>
+				      <Form.Control type="text" placeholder="Enter Last Name" name="lastName" onChange={this.onInputChange} required />
+				      <Form.Control.Feedback type="invalid">Last Name is required</Form.Control.Feedback>
+				    </Form.Group>
+				  </Form.Row>
 
-			  <Form.Row className="rm">
-			      <Form.Label>Email</Form.Label>
-			      <Form.Control type="email" placeholder="Enter Email" name="email" onChange={this.onInputChange} required />
-			      <Form.Control.Feedback type="invalid">Email is required</Form.Control.Feedback>
-			  </Form.Row>
-			  <br/>
-			  <Form.Row>
-			    <Form.Group as={Col}>
-			      <Form.Label>Password</Form.Label>
-			      <Form.Control type="text" placeholder="Enter Password" name="password" onChange={this.onInputChange} required />
-			      <Form.Control.Feedback type="invalid">Password is required</Form.Control.Feedback>
-			    </Form.Group>
+				  <Form.Row className="rm">
+				      <Form.Label>Email</Form.Label>
+				      <Form.Control type="email" placeholder="Enter Email" name="email" onChange={this.onInputChange} required />
+				      <Form.Control.Feedback type="invalid">Email is required</Form.Control.Feedback>
+				  </Form.Row>
+				  <br/>
+				  <Form.Row>
+				    <Form.Group as={Col}>
+				      <Form.Label>Password</Form.Label>
+				      <Form.Control type="password" placeholder="Enter Password" name="password" onChange={this.onInputChange} 
+				      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required />
+				      <Form.Control.Feedback type="invalid">
+				      {this.state.user.password.length === 0 ? 'Password is required' : 'Password should contain Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character'}
+				      </Form.Control.Feedback>
+				    </Form.Group>
 
-			    <Form.Group as={Col}>
-			      <Form.Label>Confirm Password</Form.Label>
-			      <Form.Control type="text" placeholder="Enter Confirm Password" name="confirmPassword" onChange={this.onInputChange} required />
-			      <Form.Control.Feedback type="invalid">Confirm Password is required</Form.Control.Feedback>
-			    </Form.Group>
-			  </Form.Row>
+				    <Form.Group as={Col}>
+				      <Form.Label>Confirm Password</Form.Label>
+				      <Form.Control type="password" placeholder="Enter Confirm Password" name="confirmPassword" onChange={this.onInputChange}
+				       isInvalid={this.state.user.password !== this.state.user.confirmPassword} required />
+				      <Form.Control.Feedback type="invalid">{this.state.user.confirmPassword === 0 ? 'Confirm Password is required' : 'Password and Confirm Password should be same'}</Form.Control.Feedback>
+				    </Form.Group>
+				  </Form.Row>
 
-			  <Button variant="primary" type="submit">Submit</Button>
-			</Form>
+				  <Button variant="primary" type="submit" disabled={((this.state.user.password.length > 0 && this.state.user.password) !== this.state.user.confirmPassword) ? true :false}>Submit</Button>
+				</Form>
+			</div>
 		)
 	}
 }
