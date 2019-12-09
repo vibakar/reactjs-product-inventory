@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Banner page snapshot renders correctly 1`] = `
+"<Banner>
+  <Bootstrap(undefined)>
+    <ForwardRef innerRef={{...}} bsPrefix=\\"carousel\\">
+      <Uncontrolled(Carousel) innerRef={{...}} bsPrefix=\\"carousel\\">
+        <Carousel bsPrefix=\\"carousel\\" activeIndex={0} onSelect={[Function: handleChange]} slide={true} fade={false} interval={5000} keyboard={true} pauseOnHover={true} wrap={true} indicators={true} controls={true} prevIcon={{...}} prevLabel=\\"Previous\\" nextIcon={{...}} nextLabel=\\"Next\\" touch={true}>
+          <div onTouchStart={[Function]} onTouchEnd={[Function]} className=\\"carousel slide\\" onKeyDown={[Function]} onMouseOver={[Function]} onMouseOut={[Function]}>
+            <ol className=\\"carousel-indicators\\">
+              <li className=\\"active\\" onClick={[Function: onClick]} />
+               
+              <li className={{...}} onClick={[Function: onClick]} />
+               
+              <li className={{...}} onClick={[Function: onClick]} />
+               
+            </ol>
+            <div className=\\"carousel-inner\\">
+              <CarouselItem className=\\"active\\">
+                <div className=\\"active carousel-item\\">
+                  <img className=\\"d-block w-100 carousel-img-h\\" src=\\"/images/c1.jpg\\" alt=\\"First slide\\" />
+                  <CarouselCaption>
+                    <div className=\\"carousel-caption\\" />
+                  </CarouselCaption>
+                </div>
+              </CarouselItem>
+              <CarouselItem className=\\"\\">
+                <div className=\\"carousel-item\\">
+                  <img className=\\"d-block w-100 carousel-img-h\\" src=\\"/images/c2.jpg\\" alt=\\"First slide\\" />
+                  <CarouselCaption>
+                    <div className=\\"carousel-caption\\" />
+                  </CarouselCaption>
+                </div>
+              </CarouselItem>
+              <CarouselItem className=\\"\\">
+                <div className=\\"carousel-item\\">
+                  <img className=\\"d-block w-100 carousel-img-h\\" src=\\"/images/c3.jpg\\" alt=\\"First slide\\" />
+                  <CarouselCaption>
+                    <div className=\\"carousel-caption\\" />
+                  </CarouselCaption>
+                </div>
+              </CarouselItem>
+            </div>
+            <SafeAnchor className=\\"carousel-control-prev\\" onClick={[Function]}>
+              <a className=\\"carousel-control-prev\\" onClick={[Function: handleClick]} role=\\"button\\" href=\\"#\\" onKeyDown={[Function: handleKeyDown]}>
+                <span aria-hidden=\\"true\\" className=\\"carousel-control-prev-icon\\" />
+                <span className=\\"sr-only\\">
+                  Previous
+                </span>
+              </a>
+            </SafeAnchor>
+            <SafeAnchor className=\\"carousel-control-next\\" onClick={[Function]}>
+              <a className=\\"carousel-control-next\\" onClick={[Function: handleClick]} role=\\"button\\" href=\\"#\\" onKeyDown={[Function: handleKeyDown]}>
+                <span aria-hidden=\\"true\\" className=\\"carousel-control-next-icon\\" />
+                <span className=\\"sr-only\\">
+                  Next
+                </span>
+              </a>
+            </SafeAnchor>
+          </div>
+        </Carousel>
+      </Uncontrolled(Carousel)>
+    </ForwardRef>
+  </Bootstrap(undefined)>
+</Banner>"
+`;

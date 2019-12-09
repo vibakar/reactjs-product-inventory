@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer page snapshot renders correctly 1`] = `
+"<Footer>
+  <Navbar fixed=\\"bottom\\" expand=\\"lg\\" bg=\\"dark\\" variant=\\"dark\\" collapseOnSelect={false}>
+    <nav className=\\"navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom\\">
+      <p className=\\"m-auto footerText\\">
+        Copyright © 2019
+      </p>
+    </nav>
+  </Navbar>
+</Footer>"
+`;
